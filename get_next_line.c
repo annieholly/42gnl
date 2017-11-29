@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/11/09 23:06:53 by aho              ###   ########.fr       */
+/*   Updated: 2017/11/28 15:49:19 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,24 @@
 
 #define BUFF_SIZE 42
 
+char **copyuntilnewline(char *saved, char **line)
+{
+	printf("copyuntilnewline string: %s \n", saved);
+	return (line);
+}
+
 
 int processnewline(char *saved, char **line)
 {
 	if (ft_strchr(saved, '\n') != NULL)
 	{
-		line = copyuntilnewline(saved);
+		line = copyuntilnewline(saved, line);
 		saved = ft_strchr(saved, '\n');
 		return (1); 
 	}
 
 
-
-
-
-
-
-
-
-
+	return (0);
 }
 
 
