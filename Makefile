@@ -7,30 +7,31 @@
 #    By: aho <aho@student.42.us.org>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:40:16 by aho               #+#    #+#              #
-#    Updated: 2017/11/28 15:51:51 by aho              ###   ########.fr        #
+#    Updated: 2017/11/28 22:03:58 by aho              ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = getnextline
 
+LIBFT = libft/libft.a
+
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-FILES = get_next_line
+FILES = get_next_line 
 
 SRC = $(addsuffix .c, $(FILES))
-OBJ = $(addsuffix .o, $(FILES))
+SRC = $(addsuffix .o, $(FILES))
 
 all: $(NAME)
 
 $(NAME):
-	@make -C libft/ re
-	@$(CC) $(CFLAGS) -c $(SRC) -I libft/
-	@$(CC) $(CFLAGS) -o $(NAME) main.c $(OBJ) -L libft/ -lft
+	@make -C libft
+	@$(CC) $(CFLAGS) $(SRC) $(LIBFT) -o $(NAME)
 
 clean:
-	@make -C libft/ fclean
+	@make -C libft/ clean
 	@/bin/rm -f $(OBJ)
 
 fclean: clean

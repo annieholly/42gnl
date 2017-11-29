@@ -6,7 +6,7 @@
 #    By: aho <aho@student.42.us.org>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:46:44 by aho               #+#    #+#              #
-#    Updated: 2017/11/28 16:00:22 by aho              ###   ########.fr        #
+#    Updated: 2017/11/28 22:01:28 by aho              ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,24 +16,27 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-FILES =	ft_bzero 	/
-		ft_memalloc	/
-		ft_memset	/
-		ft_putchar 	/
-		ft_putstr	/
-		ft_putnbr	/
-		ft_strjoin	/
-		ft_strnew	/
-		ft_strlen	/
+FILES =	ft_bzero 	\
+		ft_memalloc	\
+		ft_memset	\
+		ft_putchar 	\
+		ft_putstr	\
+		ft_putnbr	\
+		ft_strchr	\
+		ft_strjoin	\
+		ft_strnew	\
+		ft_strlen	\
 
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
 all: $(NAME)
 
-$(NAME): 
-	@$(CC) $(CFLAGS) $(SRC) -I ./ 
+$(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
+
+$(OBJ): $(SRC)
+	@$(CC) $(CFLAGS) $(SRC) -I ./ -c
 
 clean:
 	@/bin/rm -f $(OBJ)

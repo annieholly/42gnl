@@ -6,12 +6,11 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/11/09 12:53:06 by aho              ###   ########.fr       */
+/*   Updated: 2017/11/28 22:22:50 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
