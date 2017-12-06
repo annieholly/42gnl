@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/12/06 01:42:51 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/06 01:31:40 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,28 @@ int get_next_line(const int fd, char **line)
 //	free(saved);
 //	printf("saved: %s \n", saved);
 	return (0);
+}
+
+int main(int argc, char **argv)
+{
+    int fd;
+    char *line;
+    fd = open(argv[1], O_RDONLY);
+    if (argc != 2)
+        printf("Invalid \n");
+    if (argc == 2)
+    {
+        if (fd == -1)
+        {
+            printf("open () failed \n");
+            return (1);
+        }
+        while (get_next_line(fd, &line) == 1)
+		{
+//			printf("\n>>  gnl successful!\n");
+			ft_putstr(line);
+//			ft_putstr("<<<");
+			free(line);
+		}
+    }
 }

@@ -6,7 +6,7 @@
 #    By: aho <aho@student.42.us.org>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:46:44 by aho               #+#    #+#              #
-#    Updated: 2017/12/06 01:35:21 by aho              ###   ########.fr        #
+#    Updated: 2017/11/28 22:01:28 by aho              ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,6 @@ CFLAGS = -Wall -Wextra -Werror
 FILES =	ft_bzero 	\
 		ft_memalloc	\
 		ft_memset	\
-		ft_memmove	\
 		ft_putchar 	\
 		ft_putstr	\
 		ft_putnbr	\
