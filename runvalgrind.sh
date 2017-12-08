@@ -1,2 +1,2 @@
 gcc -Wall -Wextra -Werror -o run *.c ./libft/*.c -g
-valgrind --leak-check=full ./run testfiles/shortmeatstory.txt
+valgrind --leak-check=full ./run testfiles/socratictaylor.txt

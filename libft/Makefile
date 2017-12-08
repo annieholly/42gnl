@@ -6,7 +6,7 @@
 #    By: aho <aho@student.42.us.org>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 15:46:44 by aho               #+#    #+#              #
-#    Updated: 2017/12/06 01:35:21 by aho              ###   ########.fr        #
+#    Updated: 2017/12/06 19:01:54 by aho              ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,10 +23,12 @@ FILES =	ft_bzero 	\
 		ft_putchar 	\
 		ft_putstr	\
 		ft_putnbr	\
+		ft_strcat	\
 		ft_strchr	\
 		ft_strjoin	\
 		ft_strnew	\
 		ft_strlen	\
+		ft_strdel	\
 
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
