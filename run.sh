@@ -1,1 +1,1 @@
-gcc -Wall -Wextra -Werror -o run *.c ./libft/*.c -g
+gcc -Wall -Wextra -Werror -o run *.c ./libft/*.c
