@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 17:35:17 by aho               #+#    #+#             */
-/*   Updated: 2017/12/08 20:46:44 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/09 21:55:04 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int main(int argc, char **argv)
         {
 //          printf("\n>>  gnl successful!\n");
 //			printf("1\n");
-            ft_putstr(line);
+//          ft_putstr(line);
+			ft_putendl(line);
 //          ft_putstr("<<<");
             free(line);
         }
