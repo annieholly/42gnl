@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/12/12 00:29:50 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/11 22:06:04 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,49 +37,49 @@ int		nl_op(char **saved, char **line)
 
 //	printf("\n*line begin nl_op:%s--\n", *line);
 //	printf("*saved being nl_op:%s--\n", *saved);
+
 	i = 0;
-	ptrsaved = ft_strdup(*saved);
-//	ptrsaved = *saved;
+	ptrsaved = *saved;
 	if (ft_strchr(*saved, '\n') != NULL) 
 	{
 //		printf("bloop\n");
 		linestrlen = ft_strsublen(*saved, 0, '\n');
 		linestr = ft_strsub(ptrsaved, 0, linestrlen);
-		newsaved = ft_strdup(ft_strchr(ptrsaved, '\n') + 1);
-//		ft_strdel(&ptrsaved);
-
+		newsaved = ft_strchr(ptrsaved, '\n') + 1;
 	}
 	else 
 	{
 		//printf("%s\n", ptrsaved);
 		linestr = ft_strdup(ptrsaved);
-//		ft_strdel(&ptrsaved);
-		newsaved = ft_strnew(0);
+
+		//newsaved = NULL results in seg fault
+		newsaved = "";
 	}
 	*line = ft_strdup(linestr);
 	ft_strdel(&linestr);
 
 	*saved = ft_strdup(newsaved); 
-	ft_strdel(&newsaved);
 	ft_strdel(&ptrsaved);
+	
 
-//	printf("\n*line before return:%s--\n", *line);
-//	printf("*saved before return:%s--\n", *saved);
+
+	printf("\n*line before return:%s--\n", *line);
+	printf("*saved before return:%s--\n", *saved);
 
 	return (1); 
 }
 
 char *ft_strjoin_free(char *s1, char *s2) 
 {
-	//char *orig_s1; 
+	char *orig_s1; 
 	char *newstr; 
-	//orig_s1 = s1; 
-//	newstr = ft_strjoin(orig_s1, s2);
-//	ft_strdel(&orig_s1);
-	newstr = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
+
+	orig_s1 = s1; 
+	newstr = ft_strjoin(orig_s1, s2);
+	ft_strdel(&orig_s1);
 	return (newstr);
 }
+
 
 int		get_next_line(const int fd, char **l)
 {
@@ -88,9 +88,6 @@ int		get_next_line(const int fd, char **l)
 	static char		*s;
 //	char			*ptr_s;
 //	printf("--GNL CALLED-- \n");
-
-//	testfunction();
-
 	if (!(buf = ft_strnew(BUFF_SIZE)) || fd < 2 || (!l) || read(fd, buf, 0) < 0)
 		return (-1);
 	if (s == NULL && !(s = ft_strnew(0)))
@@ -109,19 +106,9 @@ int		get_next_line(const int fd, char **l)
 	ft_strdel(&buf);
 //	if (ret < 0)
 //		return (-1);
-
-//	if (s == NULL) 
-//		return (0);
-
-	if (s[0] == '\0')
-	{
-		free(s);
+	if (s[0] == '\0') 
 		return (0);
-	}
-
 	if (nl_op(&s, l) == 1)
-		; 
-	return (1);
-
-//	return (0);
+		return (1);
+	return (0);
 }
