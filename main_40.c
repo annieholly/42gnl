@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 17:35:17 by aho               #+#    #+#             */
-/*   Updated: 2017/12/11 23:01:17 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/11 23:01:06 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,39 @@
 #include "get_next_line.h" 
 #include <stdio.h>
 #include <assert.h>
-
-
-int main(int argc, char **argv)
+/*
+int main()
 {
-    int fd;
-    char *line;
-    fd = open(argv[1], O_RDONLY);
-    if (argc != 2)
-        printf("Invalid \n");
-    if (argc == 2)
-    {
-        if (fd == -1)
-        {
-            printf("open () failed \n");
-            return (1);
-        }
-        while (get_next_line(fd, &line) == 1)
-        {
-          printf("\n>>  gnl successful!\n");
-			printf("1\n");
-//          ft_putstr(line);
-			ft_putendl(line);
-//          ft_putstr("<<<");
-            free(line);
-        }
-    }
 
-//	while (1)
-//	{
-//	}
-}
+  	char 	*line;
+	int	out;
+	int	p[2];
+	char 	*str;
+	int	len = 50;
+
+	str = (char *)malloc(1000 * 1000);
+	*str = '\0';
+	while (len--)
+		strcat(str, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in leo dignissim, gravida leo id, imperdiet urna. Aliquam magna nunc, maximus quis eleifend et, scelerisque non dolor. Suspendisse augue augue, tempus");
+	out = dup(1);
+	pipe(p);
+	dup2(p[1], 1);
+
+	if (str)
+		write(1, str, strlen(str));
+	close(p[1]);
+	dup2(out, 1);
+	get_next_line(p[0], &line);
+	if (strcmp(line, str) == 0)
+	{
+	  printf("PASS \n");
+	}
+	else
+	{
+	  printf("FAIL \n");
+	}
+
+
+  
+} 
+*/

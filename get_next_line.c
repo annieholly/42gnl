@@ -76,8 +76,8 @@ int		nl_op(char **saved, char **line)
 	ft_strdel(&newsaved);
 	//ft_strdel(&ptrsaved);
 
-//	printf("\n*line before return:%s--\n", *line);
-//	printf("*saved before return:%s--\n", *saved);
+	//printf("\n*line before return:%s--\n", *line);
+	//printf("*saved before return:%s--\n", *saved);
 
 	return (1); 
 }
@@ -104,17 +104,21 @@ int		get_next_line(const int fd, char **l)
 
 //	testfunction();
 
-	if (!(buf = ft_strnew(BUFF_SIZE)) || fd < 2 || (!l) || read(fd, buf, 0) < 0)
+	if (!(buf = ft_strnew(BUFF_SIZE)) || fd < 0 || (!l) || read(fd, buf, 0) < 0)
 		return (-1);
 	if (s == NULL && !(s = ft_strnew(0)))
 		return (-1);
 	if (ft_strchr(s, '\n') != NULL && ft_strlen(s) != 1 && nl_op(&s, l) == 1)
+	  {
+	    //printf("return 1 - remaining saved \n");
 		return (1);
+	  }
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
 //		ptr_s = s;
 		s = ft_strjoin_free(s, buf);
+		//printf("s after strjoin:%s--\n",s);
 //		free(ptr_s);
 		if (ft_strchr(s, '\n') != NULL)
 			break ;
@@ -129,12 +133,24 @@ int		get_next_line(const int fd, char **l)
 	if (s[0] == '\0')
 	{
 	  //free(s);
-		return (0);
+	  //printf("saved is null, return 0 \n");
+	  return (0);
 	}
 
 	if (nl_op(&s, l) == 1)
-		; 
-	return (1);
+	{
+	  //printf("initial findnl return 1 \n");
+	  return (1);
+	}
 
-//	return (0);
+       	/*if (s[0] == '\0')
+	{
+	  //free(s);
+	  //printf("saved is null, return 0 \n");
+	  return (0);
+	  }*/
+	
+
+       	//printf("last return = 0 \n");
+	return (0);
 }
