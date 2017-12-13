@@ -38,8 +38,21 @@ int		nl_op(char **saved, char **line)
 //	printf("\n*line begin nl_op:%s--\n", *line);
 //	printf("*saved being nl_op:%s--\n", *saved);
 	i = 0;
-	ptrsaved = ft_strdup(*saved);
-//	ptrsaved = *saved;
+//	ptrsaved = ft_strdup(*saved);
+      	ptrsaved = *saved;
+
+	//if ptrsaved is NULL, return 1
+	if (ptrsaved == NULL)
+	  return (0);
+	
+	//if newline is in *saved
+	// a. malloc space on linestr
+	// b. malloc space on newsaved
+	
+
+	//else no newline found
+	// a. malloc space on linestr 
+	// b. malloc space on newsaved
 	if (ft_strchr(*saved, '\n') != NULL) 
 	{
 //		printf("bloop\n");
@@ -61,7 +74,7 @@ int		nl_op(char **saved, char **line)
 
 	*saved = ft_strdup(newsaved); 
 	ft_strdel(&newsaved);
-	ft_strdel(&ptrsaved);
+	//ft_strdel(&ptrsaved);
 
 //	printf("\n*line before return:%s--\n", *line);
 //	printf("*saved before return:%s--\n", *saved);
@@ -115,7 +128,7 @@ int		get_next_line(const int fd, char **l)
 
 	if (s[0] == '\0')
 	{
-		free(s);
+	  //free(s);
 		return (0);
 	}
 
