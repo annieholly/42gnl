@@ -6,7 +6,7 @@
 /*   By: aho <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:23:25 by aho               #+#    #+#             */
-/*   Updated: 2017/12/11 23:26:58 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/13 21:17:34 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ char	*ft_strdup(const char *s1)
 	char	*dupe;
 
 	i = 0;
-	if (!s1) 
+	if (!s1)
 		return (0);
 	if (!(dupe = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
 		return (0);
-//	if (s1 == 0 || dupe == 0)
-//		return (0);
 	while (s1[i] != '\0')
 	{
 		dupe[i] = s1[i];

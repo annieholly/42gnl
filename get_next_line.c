@@ -6,29 +6,24 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/12/13 20:41:52 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/13 20:57:37 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "get_next_line.h"
 
-int		nl_op(char **saved, char **line)
+int			nl_op(char **saved, char **line)
 {
 	char	*newsaved;
 	char	*linestr;
 	char	*nl;
-	char	*afternl;
 
 	nl = ft_strchr(*saved, '\n');
-	afternl = nl + 1;
-	newsaved = NULL;
-//	if (saved == NULL)
-//		return (0);
 	if (nl)
 	{
 		linestr = ft_strsub(*saved, 0, nl - *saved);
-		newsaved = ft_strdup(afternl);
+		newsaved = ft_strdup(nl + 1);
 	}
 	else
 	{
@@ -40,12 +35,10 @@ int		nl_op(char **saved, char **line)
 	ft_strdel(saved);
 	*saved = ft_strdup(newsaved);
 	ft_strdel(&newsaved);
-	return (1); 
+	return (1);
 }
 
-
-
-int		get_next_line(const int fd, char **l)
+int			get_next_line(const int fd, char **l)
 {
 	int				ret;
 	char			*buf;
@@ -64,18 +57,12 @@ int		get_next_line(const int fd, char **l)
 	{
 		buf[ret] = '\0';
 		ptr_s = s;
-		s = ft_strjoin(s, buf);
+		s = ft_strjoin(ptr_s, buf);
 		free(ptr_s);
 	}
 	ft_strdel(&buf);
-//	ft_strdel(&ptr_s);
-//	free(ptr_s);
-	if (s[0] == '\0')
-	{
-		ft_strdel(&s);
-		return (0);
-	}
-	if (nl_op(&s, l) == 1)
+	if (s[0] != '\0' && nl_op(&s, l) == 1)
 		return (1);
+	ft_strdel(&s);
 	return (0);
 }
