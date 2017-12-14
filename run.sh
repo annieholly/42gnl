@@ -1,1 +1,0 @@
-gcc -Wall -Wextra -Werror -o runnow *.c ./libft/*.c
