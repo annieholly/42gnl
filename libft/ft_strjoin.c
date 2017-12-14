@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 01:08:01 by aho               #+#    #+#             */
-/*   Updated: 2017/12/14 14:27:35 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/14 15:27:41 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*concat_str;
+
 	if (!s1 || !s2)
 		return (0);
 	concat_str = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
