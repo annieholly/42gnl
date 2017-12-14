@@ -1,0 +1,27 @@
+# GNL LOGIC
+
+## nl_op()
+## This function processes what is in *saved
+
+### Variables: 
+#### ptrsaved - points to *saved
+#### linestr - to be copied into *line
+#### newsaved - to be copied into *saved
+#### nl - points to where the newline is within *saved
+
+### IF (nothing exists in saved) 
+#### - RETURN (0) - nothing left to process
+
+### IF (newline is found inside *saved)
+#### - linestr (MALLOC) = copy whats in saved until the newline into linestr variable
+#### - newsaved (MALLOC) = copy whats after the newline into the newsaved variable
+### ELSE 
+#### - linestr (MALLOC) = copy everything in saved into linestr
+#### - newsaved (MALLOC) = initialize to nothing so that free error doesnt occur
+
+
+
+
+
+## get_next_line()
+
