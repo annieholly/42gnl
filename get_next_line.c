@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/12/13 19:19:43 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/13 20:41:52 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int		nl_op(char **saved, char **line)
 {
-//	printf(">> nl_op call <<\n");
 	char	*newsaved;
 	char	*linestr;
 	char	*nl;
@@ -24,73 +23,59 @@ int		nl_op(char **saved, char **line)
 	nl = ft_strchr(*saved, '\n');
 	afternl = nl + 1;
 	newsaved = NULL;
-	if (*saved == NULL)
-	  return (0);
-	if (nl) 
+//	if (saved == NULL)
+//		return (0);
+	if (nl)
 	{
 		linestr = ft_strsub(*saved, 0, nl - *saved);
 		newsaved = ft_strdup(afternl);
 	}
-	else 
+	else
+	{
 		linestr = ft_strdup(*saved);
+		newsaved = ft_strnew(0);
+	}
 	*line = ft_strdup(linestr);
 	ft_strdel(&linestr);
-	*saved = newsaved;
-	//printf("\n*line before return:%s--\n", *line);
-	//printf("*saved before return:%s--\n", *saved);
+	ft_strdel(saved);
+	*saved = ft_strdup(newsaved);
+	ft_strdel(&newsaved);
 	return (1); 
 }
 
-char *ft_strjoin_free(char *s1, char *s2) 
-{
-	//char *orig_s1; 
-	char *newstr; 
-	//orig_s1 = s1; 
-//	newstr = ft_strjoin(orig_s1, s2);
-//	ft_strdel(&orig_s1);
-	newstr = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	return (newstr);
-}
+
 
 int		get_next_line(const int fd, char **l)
 {
 	int				ret;
 	char			*buf;
 	static char		*s;
-//	char			*ptr_s;
-//	printf("--GNL CALLED-- \n");
-	if (!(buf = ft_strnew(BUFF_SIZE)) || (!l) || fd < 0 || read(fd, buf, 0) < 0)
-		return (-1);
-	if (s == NULL && !(s = ft_strnew(0)))
+	char			*ptr_s;
+
+	if (!(buf = ft_strnew(BUFF_SIZE)) || (!l) || fd < 0 ||
+		read(fd, buf, 0) < 0 || (s == NULL && !(s = ft_strnew(0))))
 		return (-1);
 	if (ft_strchr(s, '\n') != NULL && ft_strlen(s) != 1 && nl_op(&s, l) == 1)
-	  {
-	    //printf("return 1 - remaining saved \n");
+	{
+		ft_strdel(&buf);
 		return (1);
-	  }
-
+	}
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-//		ptr_s = s;
-		s = ft_strjoin_free(s, buf);
-//		free(ptr_s);
-//		if (ft_strchr(s, '\n') != NULL)
-//			break ;
+		ptr_s = s;
+		s = ft_strjoin(s, buf);
+		free(ptr_s);
 	}
 	ft_strdel(&buf);
+//	ft_strdel(&ptr_s);
+//	free(ptr_s);
 	if (s[0] == '\0')
 	{
-	  //free(s);
-	  //printf("saved is null, return 0 \n");
-	  return (0);
+		ft_strdel(&s);
+		return (0);
 	}
 	if (nl_op(&s, l) == 1)
-	{
-	  //printf("initial findnl return 1 \n");
-	  return (1);
-	}
-    //printf("last return = 0 \n");
+		return (1);
 	return (0);
 }
