@@ -3,26 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/21 22:23:53 by jchung            #+#    #+#             */
-/*   Updated: 2017/09/22 00:04:22 by jchung           ###   ########.fr       */
+/*   Created: 2017/10/14 19:47:20 by aho               #+#    #+#             */
+/*   Updated: 2017/10/14 19:48:04 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*dptr;
-	char	*sptr;
+	char		*d;
+	const char	*s;
 
-	dptr = (char *)dst;
-	sptr = (char *)src;
-	while (n-- > 0)
-		if (sptr < dptr)
-			*(dptr + n) = *(sptr + n);
-		else
-			*dptr++ = *sptr++;
+	d = dst;
+	s = src;
+	if (s < d && d < s + len)
+	{
+		d = d + len - 1;
+		s = s + len - 1;
+		while (len > 0)
+		{
+			*d-- = *s--;
+			len--;
+		}
+	}
+	else
+	{
+		while (len > 0)
+		{
+			*d++ = *s++;
+			len--;
+		}
+	}
 	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 01:25:10 by aho               #+#    #+#             */
-/*   Updated: 2017/12/12 00:04:21 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/14 13:56:04 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft/libft.h"
 # include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 
 # include <stdio.h>

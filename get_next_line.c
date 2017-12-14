@@ -6,7 +6,7 @@
 /*   By: aho <aho@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 00:57:23 by aho               #+#    #+#             */
-/*   Updated: 2017/12/13 23:05:26 by aho              ###   ########.fr       */
+/*   Updated: 2017/12/14 15:13:26 by aho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,20 @@ int			nl_op(char **saved, char **line)
 	return (1);
 }
 
+char		*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*new;
+
+	new = ft_strjoin(s1, s2);
+	free(s1);
+	return (new);
+}
+
 int			get_next_line(const int fd, char **l)
 {
 	int				ret;
 	char			*buf;
 	static char		*s;
-	char			*ptr_s;
 
 	if (!(buf = ft_strnew(BUFF_SIZE)) || (!l) || fd < 0 ||
 		read(fd, buf, 0) < 0 || (s == NULL && !(s = ft_strnew(0))))
@@ -53,11 +61,9 @@ int			get_next_line(const int fd, char **l)
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		ptr_s = s;
-		s = ft_strjoin(ptr_s, buf);
-		free(ptr_s);
+		s = ft_strjoin_free(s, buf);
 		if (ft_strchr(s, '\n') != NULL)
-		  break ;
+			break ;
 	}
 	ft_strdel(&buf);
 	if (s[0] != '\0' && nl_op(&s, l) == 1)
