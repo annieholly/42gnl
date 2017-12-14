@@ -16,22 +16,19 @@
 int			nl_op(char **saved, char **line)
 {
 	char	*newsaved;
-	char	*linestr;
 	char	*nl;
 
 	nl = ft_strchr(*saved, '\n');
 	if (nl)
 	{
-		linestr = ft_strsub(*saved, 0, nl - *saved);
+		*line = ft_strsub(*saved, 0, nl - *saved);
 		newsaved = ft_strdup(nl + 1);
 	}
 	else
 	{
-		linestr = ft_strdup(*saved);
+		*line = ft_strdup(*saved);
 		newsaved = ft_strnew(0);
 	}
-	*line = ft_strdup(linestr);
-	ft_strdel(&linestr);
 	ft_strdel(saved);
 	*saved = ft_strdup(newsaved);
 	ft_strdel(&newsaved);
@@ -59,6 +56,8 @@ int			get_next_line(const int fd, char **l)
 		ptr_s = s;
 		s = ft_strjoin(ptr_s, buf);
 		free(ptr_s);
+		if (ft_strchr(s, '\n') != NULL)
+		  break ;
 	}
 	ft_strdel(&buf);
 	if (s[0] != '\0' && nl_op(&s, l) == 1)
